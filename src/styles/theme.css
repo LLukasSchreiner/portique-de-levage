@@ -1,0 +1,184 @@
+/* Thème « Kraft & calque » : le carton de la maquette et le papier calque du dessin technique. */
+
+:root {
+  --kraft: #b48c5c;
+  --kraft-clair: #c9a473;
+  --kraft-fonce: #6e4f33;
+  --encre: #2b2017;          /* texte sur kraft */
+  --calque: #eceee7;
+  --calque-ligne: rgba(47, 80, 121, 0.08);
+  --graphite: #2f353d;       /* trait de crayon */
+  --bleu: #2f5079;           /* encre technique */
+  --rouge: #b4432f;          /* repères, accents */
+  --vert: #3f7a3b;
+  --scotch: rgba(236, 226, 196, 0.75);
+
+  --f-titre: 'Big Shoulders Stencil Display', Impact, sans-serif;   /* grands titres de section seulement */
+  --f-affiche: 'Big Shoulders Display', 'Arial Narrow', sans-serif; /* chiffres, numéros, noms */
+  --f-tech: 'IBM Plex Mono', ui-monospace, Consolas, monospace;
+  --f-texte: 'IBM Plex Sans', system-ui, sans-serif;
+  --f-main: 'Architects Daughter', 'Segoe Print', cursive;
+
+  --marge: clamp(16px, 5vw, 72px);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { background: var(--kraft-fonce); }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+body {
+  font-family: var(--f-texte);
+  color: var(--encre);
+  background: var(--kraft-fonce);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--rouge); color: var(--calque); }
+
+/* ---------- Feuilles (sections) ---------- */
+
+.feuille {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+}
+.feuille__contenu {
+  position: relative;
+  min-height: inherit;
+  padding: clamp(72px, 10vh, 120px) var(--marge);
+  will-change: transform;
+}
+/* voile qui assombrit une feuille quand la suivante la recouvre */
+.feuille__voile {
+  position: absolute;
+  inset: 0;
+  background: #120c07;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 50;
+}
+
+.kraft {
+  background-color: var(--kraft);
+  background-image:
+    radial-gradient(ellipse at 50% 40%, transparent 55%, rgba(60, 38, 18, 0.35) 100%),
+    url('/textures/kraft.png');
+  background-size: 100% 100%, cover;
+  background-position: center, center;
+  color: var(--encre);
+}
+
+.calque {
+  background-color: var(--calque);
+  background-image:
+    linear-gradient(var(--calque-ligne) 1px, transparent 1px),
+    linear-gradient(90deg, var(--calque-ligne) 1px, transparent 1px),
+    linear-gradient(rgba(47, 80, 121, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(47, 80, 121, 0.035) 1px, transparent 1px);
+  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+  color: var(--graphite);
+}
+
+/* ---------- Typographie ---------- */
+
+.titre {
+  font-family: var(--f-titre);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  font-size: clamp(56px, 11vw, 180px);
+}
+.titre--moyen { font-size: clamp(44px, 7vw, 112px); }
+
+/* Même famille que les titres, mais pleine : pour tout ce qui doit se lire vite */
+.affiche {
+  font-family: var(--f-affiche);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: 0.01em;
+}
+
+.surtitre {
+  font-family: var(--f-tech);
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.texte {
+  font-size: clamp(16px, 1.25vw, 19px);
+  line-height: 1.6;
+  max-width: 58ch;
+}
+
+.main {
+  font-family: var(--f-main);
+}
+
+.tech {
+  font-family: var(--f-tech);
+}
+
+/* ---------- Cartouche (bloc titre de plan) ---------- */
+
+.cartouche {
+  display: inline-flex;
+  align-self: flex-start;
+  width: max-content;
+  border: 1.5px solid currentColor;
+  font-family: var(--f-tech);
+  font-size: 12.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.cartouche > span { padding: 6px 10px; }
+.cartouche > span + span { border-left: 1.5px solid currentColor; }
+.cartouche__num { font-weight: 500; }
+
+/* ---------- Bord de carton ondulé (haut des feuilles kraft) ---------- */
+
+.bord-carton {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 16px;
+  z-index: 5;
+  pointer-events: none;
+  color: var(--kraft-fonce);
+}
+
+/* ---------- Divers ---------- */
+
+.scotch {
+  position: absolute;
+  width: 110px;
+  height: 30px;
+  background: var(--scotch);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(1px);
+}
+
+.lien-passer {
+  font-family: var(--f-tech);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: inherit;
+  background: none;
+  border: none;
+  border-bottom: 1px solid currentColor;
+  cursor: pointer;
+  opacity: 0.75;
+}
+.lien-passer:hover { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
