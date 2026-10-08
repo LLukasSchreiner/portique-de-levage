@@ -145,5 +145,4 @@ export const credits = {
     { nom: 'Concrete Floor 01', auteur: 'Rob Tuytel' },
   ],
   polices: ['Big Shoulders', 'IBM Plex Sans et Mono', 'Architects Daughter'],
-  outils: ['Blender', 'React', 'Vite', 'Three.js', 'React Three Fiber', 'GSAP', 'Lenis', 'Rough.js'],
 };

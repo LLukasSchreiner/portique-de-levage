@@ -27,7 +27,6 @@ export default function PiedDePage() {
           <a href="https://polyhaven.com" target="_blank" rel="noreferrer">Poly Haven</a>, licence CC0.
         </p>
         <p>Polices : {credits.polices.join(', ')}, licence SIL Open Font License.</p>
-        <p>Réalisé avec {credits.outils.join(', ')}.</p>
       </div>
 
       <button className="pied__haut tech" onClick={() => allerA(0)}>Retour en haut ↑</button>
