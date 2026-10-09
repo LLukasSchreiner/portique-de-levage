@@ -63,7 +63,8 @@ export const equipe = [
   { prenom: 'Hugo', nom: 'Bauer' },
   { prenom: 'Nicolas', nom: 'Buchholzer' },
   { prenom: 'Allessandro', nom: 'Neri' },
-  { prenom: '', nom: 'Chahine' },
+  { prenom: 'Chahine', nom: 'Djaiz' },
+  { prenom: 'Lukas', nom: 'Schreiner' },
 ];
 
 export const sections = [
