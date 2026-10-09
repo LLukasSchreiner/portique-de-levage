@@ -200,6 +200,8 @@ export function creerMecanisme(model, scene, { piloter = true, id = 'maquette' }
     // Cordes de translation : ce que la partie horizontale gagne, la partie verticale le perd
     for (const cote of ['G', 'D']) {
       const t = transl[cote];
+      // la poulie de renvoi peut bouger (montage) : on suit sa position réelle
+      renvoi[cote].getWorldPosition(t.c);
       const a = monde(ancreT[cote]);
       const haut = new THREE.Vector3(t.c.x, t.c.y + rR, t.c.z);
       const horiz = a.distanceTo(haut);
@@ -257,8 +259,7 @@ export function creerMecanisme(model, scene, { piloter = true, id = 'maquette' }
     etat,
     limites: { chariot: limC, moufle: limM },
     pieces: { chariot, moufle, poigneeT, poigneeLevage },
-    cordes: { palan: [tubePalan, tubeReste], translation: [transl.G.tube, transl.D.tube] },
-    replacerReste,
+    cordes: { palan: [tubePalan, tubeReste], translation: [transl.G.tube, transl.D.tube] },    replacerReste,
     // Remet le modèle dans son état d'origine et retire les cordes de la scène
     detruire() {
       for (const t of [tubePalan, tubeReste, transl.G.tube, transl.D.tube]) {
